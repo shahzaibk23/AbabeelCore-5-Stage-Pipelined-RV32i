@@ -1,0 +1,7 @@
+[0m[[0m[31merror[0m] [0m[0m/home/hellcaster/chisel-tutorial/src/main/scala/datapath/Top.scala:43:2: not found: value ifIf[0m
+[0m[[0m[31merror[0m] [0m[0m	ifIf.io.pc4_in := Pc.io.pc4[0m
+[0m[[0m[31merror[0m] [0m[0m	^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/hellcaster/chisel-tutorial/src/main/scala/datapath/Top.scala:59:18: not found: value ifIf[0m
+[0m[[0m[31merror[0m] [0m[0m	immGen.io.PC := ifIf.io.pc_out[0m
+[0m[[0m[31merror[0m] [0m[0m	                ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

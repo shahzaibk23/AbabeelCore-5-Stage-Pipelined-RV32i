@@ -1,0 +1,10 @@
+[
+  {
+    "class":"firrtl.annotations.LoadMemoryAnnotation",
+    "target":"InsMem.InsMem.mem",
+    "fileName":"/home/hellcaster/Instruction.txt",
+    "hexOrBinary":{
+      "name":"h"
+    }
+  }
+]
