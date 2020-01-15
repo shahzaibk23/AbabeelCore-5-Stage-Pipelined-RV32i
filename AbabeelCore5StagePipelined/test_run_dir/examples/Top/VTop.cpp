@@ -97,27 +97,27 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
     VL_SIG(__Vdlyvval__Top__DOT__dataMem__DOT__dMem__v0,31,0);
     // Body
     __Vdlyvset__Top__DOT__dataMem__DOT__dMem__v0 = 0U;
-    // ALWAYS at Top.v:1952
+    // ALWAYS at Top.v:1994
     vlTOPp->Top__DOT__memWr__DOT__reg_memToReg = ((~ (IData)(vlTOPp->reset)) 
 						  & (IData)(vlTOPp->Top__DOT__exeMem__DOT__reg_memToReg));
-    // ALWAYS at Top.v:1962
+    // ALWAYS at Top.v:2004
     vlTOPp->Top__DOT__memWr__DOT__reg_dataOut = ((IData)(vlTOPp->reset)
 						  ? 0U
 						  : 
 						 ((IData)(vlTOPp->Top__DOT__exeMem__DOT__reg_memToReg)
 						   ? vlTOPp->Top__DOT__dataMem__DOT__dMem___05FT_20_data
 						   : 0U));
-    // ALWAYS at Top.v:1967
+    // ALWAYS at Top.v:2009
     vlTOPp->Top__DOT__memWr__DOT__reg_aluOutput = ((IData)(vlTOPp->reset)
 						    ? 0U
 						    : vlTOPp->Top__DOT__exeMem__DOT__reg_aluOutput);
-    // ALWAYS at Top.v:1542
+    // ALWAYS at Top.v:1547
     if (vlTOPp->Top__DOT__exeMem__DOT__reg_memToReg) {
 	vlTOPp->Top__DOT__dataMem__DOT__dMem___05FT_20_addr_pipe_0 
 	    = (0xffU & (vlTOPp->Top__DOT__exeMem__DOT__reg_aluOutput 
 			>> 2U));
     }
-    // ALWAYS at Top.v:1539
+    // ALWAYS at Top.v:1544
     if (((~ (IData)(vlTOPp->Top__DOT__exeMem__DOT__reg_memToReg)) 
 	 & (IData)(vlTOPp->Top__DOT__exeMem__DOT__reg_memWrite))) {
 	__Vdlyvval__Top__DOT__dataMem__DOT__dMem__v0 
@@ -127,26 +127,26 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	    = (0xffU & (vlTOPp->Top__DOT__exeMem__DOT__reg_aluOutput 
 			>> 2U));
     }
-    // ALWAYSPOST at Top.v:1540
+    // ALWAYSPOST at Top.v:1545
     if (__Vdlyvset__Top__DOT__dataMem__DOT__dMem__v0) {
 	vlTOPp->Top__DOT__dataMem__DOT__dMem[__Vdlyvdim0__Top__DOT__dataMem__DOT__dMem__v0] 
 	    = __Vdlyvval__Top__DOT__dataMem__DOT__dMem__v0;
     }
     vlTOPp->Top__DOT__dataMem__DOT__dMem___05FT_20_data 
 	= vlTOPp->Top__DOT__dataMem__DOT__dMem[vlTOPp->Top__DOT__dataMem__DOT__dMem___05FT_20_addr_pipe_0];
-    // ALWAYS at Top.v:1873
+    // ALWAYS at Top.v:1901
     vlTOPp->Top__DOT__exeMem__DOT__reg_strData = ((IData)(vlTOPp->reset)
 						   ? 0U
 						   : vlTOPp->Top__DOT__idExe__DOT__reg_strData);
-    // ALWAYS at Top.v:1863
+    // ALWAYS at Top.v:1891
     vlTOPp->Top__DOT__exeMem__DOT__reg_memToReg = (
 						   (~ (IData)(vlTOPp->reset)) 
 						   & (IData)(vlTOPp->Top__DOT__idExe__DOT__reg_memToReg));
-    // ALWAYS at Top.v:1853
+    // ALWAYS at Top.v:1881
     vlTOPp->Top__DOT__exeMem__DOT__reg_memWrite = (
 						   (~ (IData)(vlTOPp->reset)) 
 						   & (IData)(vlTOPp->Top__DOT__idExe__DOT__reg_memWrite));
-    // ALWAYS at Top.v:1878
+    // ALWAYS at Top.v:1906
     vlTOPp->Top__DOT__exeMem__DOT__reg_aluOutput = 
 	((IData)(vlTOPp->reset) ? 0U : (IData)((VL_ULL(0xfffffffff) 
 						& ((0U 
@@ -182,18 +182,18 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 										>> 0x1fU))))))) 
 						      << 0x20U) 
 						     | (QData)((IData)(vlTOPp->Top__DOT__alu__DOT___GEN_20))))))));
-    // ALWAYS at Top.v:1756
+    // ALWAYS at Top.v:1770
     vlTOPp->Top__DOT__idExe__DOT__reg_strData = ((IData)(vlTOPp->reset)
 						  ? 0U
 						  : vlTOPp->Top__DOT__regFile_io_rd2);
-    // ALWAYS at Top.v:1736
+    // ALWAYS at Top.v:1750
     vlTOPp->Top__DOT__idExe__DOT__reg_memToReg = ((~ (IData)(vlTOPp->reset)) 
 						  & ((0x33U 
 						      != 
 						      (0x7fU 
 						       & vlTOPp->Top__DOT__ifId__DOT__reg_ins)) 
 						     & (IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Load)));
-    // ALWAYS at Top.v:1726
+    // ALWAYS at Top.v:1740
     vlTOPp->Top__DOT__idExe__DOT__reg_memWrite = ((~ (IData)(vlTOPp->reset)) 
 						  & ((0x33U 
 						      != 
@@ -201,7 +201,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 						       & vlTOPp->Top__DOT__ifId__DOT__reg_ins)) 
 						     & ((~ (IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Load)) 
 							& (IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Store))));
-    // ALWAYS at Top.v:1761
+    // ALWAYS at Top.v:1775
     vlTOPp->Top__DOT__idExe__DOT__reg_aluCtrl = ((IData)(vlTOPp->reset)
 						  ? 0U
 						  : 
@@ -243,7 +243,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 							== (IData)(vlTOPp->Top__DOT__control__DOT__CD_io_AluOp))
 						        ? 0x1fU
 						        : 0U)))))));
-    // ALWAYS at Top.v:1746
+    // ALWAYS at Top.v:1760
     vlTOPp->Top__DOT__idExe__DOT__reg_operandB = ((IData)(vlTOPp->reset)
 						   ? 0U
 						   : 
@@ -295,7 +295,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 										>> 0xcU))))) 
 								    << 0xcU)))
 						      : vlTOPp->Top__DOT__regFile_io_rd2))));
-    // ALWAYS at Top.v:1741
+    // ALWAYS at Top.v:1755
     vlTOPp->Top__DOT__idExe__DOT__reg_operandA = ((IData)(vlTOPp->reset)
 						   ? 0U
 						   : 
@@ -527,16 +527,16 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
     vlTOPp->Top__DOT__alu__DOT___T_29 = VL_LTS_III(1,32,32, vlTOPp->Top__DOT__idExe__DOT__reg_operandA, vlTOPp->Top__DOT__idExe__DOT__reg_operandB);
     vlTOPp->Top__DOT__alu__DOT___T_75 = (vlTOPp->Top__DOT__idExe__DOT__reg_operandA 
 					 == vlTOPp->Top__DOT__idExe__DOT__reg_operandB);
-    // ALWAYS at Top.v:1606
+    // ALWAYS at Top.v:1611
     vlTOPp->Top__DOT__ifId__DOT__reg_pc = ((IData)(vlTOPp->reset)
 					    ? 0U : vlTOPp->Top__DOT__Pc__DOT__reg__024);
-    // ALWAYS at Top.v:1611
+    // ALWAYS at Top.v:1616
     vlTOPp->Top__DOT__ifId__DOT__reg_pc4 = ((IData)(vlTOPp->reset)
 					     ? 0U : 
 					    ((IData)(4U) 
 					     + vlTOPp->Top__DOT__Pc__DOT__reg__024));
     // ALWAYS at Top.v:1137
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0x1fU == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_31 = 0U;
@@ -549,7 +549,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:1126
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0x1eU == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_30 = 0U;
@@ -562,7 +562,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:1115
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0x1dU == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_29 = 0U;
@@ -575,7 +575,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:1104
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0x1cU == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_28 = 0U;
@@ -588,7 +588,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:1093
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0x1bU == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_27 = 0U;
@@ -601,7 +601,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:1082
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0x1aU == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_26 = 0U;
@@ -614,7 +614,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:1071
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0x19U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_25 = 0U;
@@ -627,7 +627,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:1060
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0x18U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_24 = 0U;
@@ -640,7 +640,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:1049
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0x17U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_23 = 0U;
@@ -653,7 +653,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:1038
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0x16U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_22 = 0U;
@@ -666,7 +666,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:1027
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0x15U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_21 = 0U;
@@ -679,7 +679,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:1016
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0x14U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_20 = 0U;
@@ -692,7 +692,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:1005
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0x13U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_19 = 0U;
@@ -705,7 +705,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:994
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0x12U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_18 = 0U;
@@ -718,7 +718,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:983
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0x11U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_17 = 0U;
@@ -731,7 +731,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:972
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0x10U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_16 = 0U;
@@ -744,7 +744,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:961
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0xfU == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_15 = 0U;
@@ -757,7 +757,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:950
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0xeU == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_14 = 0U;
@@ -770,7 +770,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:939
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0xdU == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_13 = 0U;
@@ -783,7 +783,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:928
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0xcU == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_12 = 0U;
@@ -796,7 +796,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:917
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0xbU == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_11 = 0U;
@@ -809,7 +809,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:906
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((0xaU == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_10 = 0U;
@@ -822,7 +822,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:895
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((9U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_9 = 0U;
@@ -835,7 +835,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:884
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((8U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_8 = 0U;
@@ -848,7 +848,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:873
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((7U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_7 = 0U;
@@ -861,7 +861,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:862
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((6U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_6 = 0U;
@@ -874,7 +874,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:851
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((5U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_5 = 0U;
@@ -887,7 +887,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:840
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((4U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_4 = 0U;
@@ -900,7 +900,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:829
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((3U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_3 = 0U;
@@ -913,7 +913,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:818
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((2U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_2 = 0U;
@@ -926,7 +926,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:807
-    if (vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite) {
+    if (vlTOPp->Top__DOT__memWr__DOT__reg_regWrite) {
 	if ((0U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 	    if ((1U == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))) {
 		vlTOPp->Top__DOT__regFile__DOT__registers_1 = 0U;
@@ -939,7 +939,7 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 	}
     }
     // ALWAYS at Top.v:796
-    vlTOPp->Top__DOT__regFile__DOT__registers_0 = ((IData)(vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite)
+    vlTOPp->Top__DOT__regFile__DOT__registers_0 = ((IData)(vlTOPp->Top__DOT__memWr__DOT__reg_regWrite)
 						    ? 
 						   ((0U 
 						     == (IData)(vlTOPp->Top__DOT__memWr__DOT__reg_rd))
@@ -950,25 +950,48 @@ VL_INLINE_OPT void VTop::_sequent__TOP__2(VTop__Syms* __restrict vlSymsp) {
 						      ? vlTOPp->Top__DOT__regFile_io_WriteData
 						      : 0U))
 						    : 0U);
-    vlTOPp->Top__DOT__regFile_io_WriteData = ((IData)(vlTOPp->Top__DOT__memWr__DOT__reg_memToReg)
-					       ? vlTOPp->Top__DOT__memWr__DOT__reg_dataOut
-					       : vlTOPp->Top__DOT__memWr__DOT__reg_aluOutput);
-    // ALWAYS at Top.v:1426
-    vlTOPp->Top__DOT__Pc__DOT__reg__024 = vlTOPp->Top__DOT__Pc_io_input;
-    // ALWAYS at Top.v:1957
+    // ALWAYS at Top.v:1427
+    vlTOPp->Top__DOT__Pc__DOT__reg__024 = ((IData)(vlTOPp->reset)
+					    ? 0U : vlTOPp->Top__DOT__Pc_io_input);
+    // ALWAYS at Top.v:1999
     vlTOPp->Top__DOT__memWr__DOT__reg_rd = ((IData)(vlTOPp->reset)
 					     ? 0U : (IData)(vlTOPp->Top__DOT__exeMem__DOT__reg_rd));
+    // ALWAYS at Top.v:2014
+    vlTOPp->Top__DOT__memWr__DOT__reg_regWrite = ((~ (IData)(vlTOPp->reset)) 
+						  & (IData)(vlTOPp->Top__DOT__exeMem__DOT__reg_regWrite));
     vlTOPp->Top__DOT__Pc_io_input = ((IData)(4U) + vlTOPp->Top__DOT__Pc__DOT__reg__024);
-    // ALWAYS at Top.v:1868
+    // ALWAYS at Top.v:1896
     vlTOPp->Top__DOT__exeMem__DOT__reg_rd = ((IData)(vlTOPp->reset)
 					      ? 0U : (IData)(vlTOPp->Top__DOT__idExe__DOT__reg_rd));
-    // ALWAYS at Top.v:1751
+    vlTOPp->Top__DOT__regFile_io_WriteData = ((IData)(vlTOPp->Top__DOT__memWr__DOT__reg_memToReg)
+					       ? vlTOPp->Top__DOT__memWr__DOT__reg_dataOut
+					       : ((IData)(vlTOPp->Top__DOT__memWr__DOT__reg_regWrite)
+						   ? vlTOPp->Top__DOT__memWr__DOT__reg_aluOutput
+						   : 0U));
+    // ALWAYS at Top.v:1911
+    vlTOPp->Top__DOT__exeMem__DOT__reg_regWrite = (
+						   (~ (IData)(vlTOPp->reset)) 
+						   & (IData)(vlTOPp->Top__DOT__idExe__DOT__reg_regWrite));
+    // ALWAYS at Top.v:1765
     vlTOPp->Top__DOT__idExe__DOT__reg_rd = (0x1fU & 
 					    ((IData)(vlTOPp->reset)
 					      ? 0U : 
 					     (vlTOPp->Top__DOT__ifId__DOT__reg_ins 
 					      >> 7U)));
-    // ALWAYS at Top.v:1616
+    // ALWAYS at Top.v:1780
+    vlTOPp->Top__DOT__idExe__DOT__reg_regWrite = ((~ (IData)(vlTOPp->reset)) 
+						  & ((0x33U 
+						      == 
+						      (0x7fU 
+						       & vlTOPp->Top__DOT__ifId__DOT__reg_ins)) 
+						     | ((IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Load) 
+							| ((~ (IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Store)) 
+							   & ((~ (IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Branch)) 
+							      & ((IData)(vlTOPp->Top__DOT__control__DOT__ID_io_IType) 
+								 | ((IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Jalr) 
+								    | ((IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Jal) 
+								       | (IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Lui)))))))));
+    // ALWAYS at Top.v:1621
     vlTOPp->Top__DOT__ifId__DOT__reg_ins = ((IData)(vlTOPp->reset)
 					     ? 0U : vlTOPp->Top__DOT__insMem__DOT__mem___05FT_11_data);
     vlTOPp->Top__DOT__insMem__DOT__mem___05FT_11_data 
@@ -1335,10 +1358,12 @@ void VTop::_settle__TOP__3(VTop__Syms* __restrict vlSymsp) {
     vlTOPp->Top__DOT__alu__DOT___T_29 = VL_LTS_III(1,32,32, vlTOPp->Top__DOT__idExe__DOT__reg_operandA, vlTOPp->Top__DOT__idExe__DOT__reg_operandB);
     vlTOPp->Top__DOT__alu__DOT___T_75 = (vlTOPp->Top__DOT__idExe__DOT__reg_operandA 
 					 == vlTOPp->Top__DOT__idExe__DOT__reg_operandB);
+    vlTOPp->Top__DOT__Pc_io_input = ((IData)(4U) + vlTOPp->Top__DOT__Pc__DOT__reg__024);
     vlTOPp->Top__DOT__regFile_io_WriteData = ((IData)(vlTOPp->Top__DOT__memWr__DOT__reg_memToReg)
 					       ? vlTOPp->Top__DOT__memWr__DOT__reg_dataOut
-					       : vlTOPp->Top__DOT__memWr__DOT__reg_aluOutput);
-    vlTOPp->Top__DOT__Pc_io_input = ((IData)(4U) + vlTOPp->Top__DOT__Pc__DOT__reg__024);
+					       : ((IData)(vlTOPp->Top__DOT__memWr__DOT__reg_regWrite)
+						   ? vlTOPp->Top__DOT__memWr__DOT__reg_aluOutput
+						   : 0U));
     vlTOPp->Top__DOT__insMem__DOT__mem___05FT_11_data 
 	= vlTOPp->Top__DOT__insMem__DOT__mem[(0x3ffU 
 					      & (vlTOPp->Top__DOT__Pc__DOT__reg__024 
@@ -1865,15 +1890,6 @@ void VTop::_settle__TOP__3(VTop__Syms* __restrict vlSymsp) {
 							       ? vlTOPp->Top__DOT__idExe__DOT__reg_operandA
 							       : 0U))))))))))))));
     vlTOPp->io_main_RegOut = vlTOPp->Top__DOT__regFile_io_WriteData;
-    vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite 
-	= ((0x33U == (0x7fU & vlTOPp->Top__DOT__ifId__DOT__reg_ins)) 
-	   | ((IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Load) 
-	      | ((~ (IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Store)) 
-		 & ((~ (IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Branch)) 
-		    & ((IData)(vlTOPp->Top__DOT__control__DOT__ID_io_IType) 
-		       | ((IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Jalr) 
-			  | ((IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Jal) 
-			     | (IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Lui))))))));
     vlTOPp->Top__DOT__control__DOT__CD_io_AluOp = (
 						   (0x33U 
 						    == 
@@ -2101,15 +2117,6 @@ VL_INLINE_OPT void VTop::_sequent__TOP__4(VTop__Syms* __restrict vlSymsp) {
 							       ? vlTOPp->Top__DOT__idExe__DOT__reg_operandA
 							       : 0U))))))))))))));
     vlTOPp->io_main_RegOut = vlTOPp->Top__DOT__regFile_io_WriteData;
-    vlTOPp->Top__DOT__control__DOT__CD_io_RegWrite 
-	= ((0x33U == (0x7fU & vlTOPp->Top__DOT__ifId__DOT__reg_ins)) 
-	   | ((IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Load) 
-	      | ((~ (IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Store)) 
-		 & ((~ (IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Branch)) 
-		    & ((IData)(vlTOPp->Top__DOT__control__DOT__ID_io_IType) 
-		       | ((IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Jalr) 
-			  | ((IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Jal) 
-			     | (IData)(vlTOPp->Top__DOT__control__DOT__ID_io_Lui))))))));
     vlTOPp->Top__DOT__control__DOT__CD_io_AluOp = (
 						   (0x33U 
 						    == 
@@ -2255,7 +2262,6 @@ void VTop::_ctor_var_reset() {
     Top__DOT__control__DOT__ID_io_Jalr = VL_RAND_RESET_I(1);
     Top__DOT__control__DOT__ID_io_Jal = VL_RAND_RESET_I(1);
     Top__DOT__control__DOT__ID_io_Lui = VL_RAND_RESET_I(1);
-    Top__DOT__control__DOT__CD_io_RegWrite = VL_RAND_RESET_I(1);
     Top__DOT__control__DOT__CD_io_AluOp = VL_RAND_RESET_I(3);
     Top__DOT__control__DOT__CD_io_Operand_aSel = VL_RAND_RESET_I(2);
     Top__DOT__control__DOT__CD_io_Operand_bSel = VL_RAND_RESET_I(1);
@@ -2317,15 +2323,18 @@ void VTop::_ctor_var_reset() {
     Top__DOT__idExe__DOT__reg_rd = VL_RAND_RESET_I(5);
     Top__DOT__idExe__DOT__reg_strData = VL_RAND_RESET_I(32);
     Top__DOT__idExe__DOT__reg_aluCtrl = VL_RAND_RESET_I(5);
+    Top__DOT__idExe__DOT__reg_regWrite = VL_RAND_RESET_I(1);
     Top__DOT__exeMem__DOT__reg_memWrite = VL_RAND_RESET_I(1);
     Top__DOT__exeMem__DOT__reg_memToReg = VL_RAND_RESET_I(1);
     Top__DOT__exeMem__DOT__reg_rd = VL_RAND_RESET_I(5);
     Top__DOT__exeMem__DOT__reg_strData = VL_RAND_RESET_I(32);
     Top__DOT__exeMem__DOT__reg_aluOutput = VL_RAND_RESET_I(32);
+    Top__DOT__exeMem__DOT__reg_regWrite = VL_RAND_RESET_I(1);
     Top__DOT__memWr__DOT__reg_memToReg = VL_RAND_RESET_I(1);
     Top__DOT__memWr__DOT__reg_rd = VL_RAND_RESET_I(5);
     Top__DOT__memWr__DOT__reg_dataOut = VL_RAND_RESET_I(32);
     Top__DOT__memWr__DOT__reg_aluOutput = VL_RAND_RESET_I(32);
+    Top__DOT__memWr__DOT__reg_regWrite = VL_RAND_RESET_I(1);
     __Vclklast__TOP__clock = VL_RAND_RESET_I(1);
     __Vm_traceActivity = VL_RAND_RESET_I(32);
 }

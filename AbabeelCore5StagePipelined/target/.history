@@ -1,0 +1,4 @@
+test:runMain datapath IF_ID 
+test:runMain datapath.launcher IF_ID
+test:runMain datapath.Launcher IF_ID
+test:runMain datapath.Launcher Top --backend-name verilator

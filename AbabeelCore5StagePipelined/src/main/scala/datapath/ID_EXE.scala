@@ -15,6 +15,7 @@ class ID_EXE extends Module{
 		val rd_in = Input(UInt(5.W))
 		val strData_in = Input(SInt(32.W))
 		val aluCtrl_in = Input(UInt(5.W))
+		val regWrite_in = Input(UInt(1.W))
 
 		val memWrite_out = Output(UInt(1.W))
 		val memRead_out = Output(UInt(1.W))
@@ -24,6 +25,7 @@ class ID_EXE extends Module{
 		val rd_out = Output(UInt(5.W))
 		val strData_out = Output(SInt(32.W))
 		val aluCtrl_out = Output(UInt(5.W))
+		val regWrite_out = Output(UInt(1.W))
 		
 	})
 
@@ -36,6 +38,7 @@ class ID_EXE extends Module{
 	val reg_rd = RegInit(0.U(5.W))
 	val reg_strData = RegInit(0.S(32.W))
 	val reg_aluCtrl = RegInit(0.U(5.W))
+	val reg_regWrite = RegInit(0.U(1.W))
 
 	reg_memWrite := io.memWrite_in
 	reg_memRead := io.memRead_in
@@ -45,6 +48,7 @@ class ID_EXE extends Module{
 	reg_rd := io.rd_in
 	reg_strData := io.strData_in
 	reg_aluCtrl := io.aluCtrl_in
+	reg_regWrite := io.regWrite_in
 
 
 	io.memWrite_out := reg_memWrite
@@ -55,6 +59,7 @@ class ID_EXE extends Module{
 	io.rd_out := reg_rd
 	io.strData_out := reg_strData
 	io.aluCtrl_out := reg_aluCtrl
+	io.regWrite_out := reg_regWrite
 
 
 	

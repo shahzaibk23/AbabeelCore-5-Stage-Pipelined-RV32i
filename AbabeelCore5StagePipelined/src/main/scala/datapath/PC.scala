@@ -9,7 +9,7 @@ class PC extends Module{
 		val pc = Output(UInt(32.W))
 	})
 
-	val reg = RegNext(0.U(32.W))
+	val reg = RegInit(0.U(32.W))
 	reg := io.input
 	io.pc4 := reg + 4.U
 	io.pc :=  reg

@@ -1,7 +1,6 @@
-[0m[[0m[31merror[0m] [0m[0m/home/hellcaster/chisel-tutorial/src/main/scala/datapath/Top.scala:43:2: not found: value ifIf[0m
-[0m[[0m[31merror[0m] [0m[0m	ifIf.io.pc4_in := Pc.io.pc4[0m
-[0m[[0m[31merror[0m] [0m[0m	^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/hellcaster/chisel-tutorial/src/main/scala/datapath/Top.scala:59:18: not found: value ifIf[0m
-[0m[[0m[31merror[0m] [0m[0m	immGen.io.PC := ifIf.io.pc_out[0m
-[0m[[0m[31merror[0m] [0m[0m	                ^[0m
-[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/hellcaster/chisel-tutorial/src/main/scala/datapath/Top.scala:138:28: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Boolean[0m
+[0m[[0m[31merror[0m] [0m[0m required: chisel3.core.Bool[0m
+[0m[[0m[31merror[0m] [0m[0m		when(regFile.io.RegWrite == 1.U){[0m
+[0m[[0m[31merror[0m] [0m[0m		                         ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

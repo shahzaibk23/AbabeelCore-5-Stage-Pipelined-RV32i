@@ -49,7 +49,7 @@ class Top extends Module{
 	control.io.OpCode := ifId.io.ins_out(6,0)
 
 	//Register
-	regFile.io.RegWrite := control.io.RegWrite
+	//regFile.io.RegWrite := control.io.RegWrite
 	regFile.io.rs1 := ifId.io.ins_out(19,15)
 	regFile.io.rs2 := ifId.io.ins_out(24,20)
 	//regFile.io.rd := ifId.io.ins_out(11,7)
@@ -91,7 +91,7 @@ class Top extends Module{
 	idExe.io.rd_in := ifId.io.ins_out(11,7)
 	idExe.io.strData_in := regFile.io.rd2
 	idExe.io.aluCtrl_in := aluControl.io.AluC
-
+	idExe.io.regWrite_in := control.io.RegWrite
 	//-------------------EXE----------------
 
 	//ALU
@@ -107,6 +107,7 @@ class Top extends Module{
 	exeMem.io.rd_in := idExe.io.rd_out
 	exeMem.io.strData_in := idExe.io.strData_out
 	exeMem.io.aluOutput_in := alu.io.output
+	exeMem.io.regWrite_in := idExe.io.regWrite_out
 
 	//--------------MEM-------------------
 
@@ -122,16 +123,23 @@ class Top extends Module{
 	memWr.io.rd_in := exeMem.io.rd_out
 	memWr.io.aluOutput_in := exeMem.io.aluOutput_out
 	memWr.io.dataOut_in := dataMem.io.DataOut
+	memWr.io.regWrite_in := exeMem.io.regWrite_out
+	
 
 
 	//---------------WR-----------------------
 
 	regFile.io.rd := memWr.io.rd_out
+	regFile.io.RegWrite := memWr.io.regWrite_out
 
 	when(memWr.io.memToReg_out === 1.U){
 		regFile.io.WriteData :=  memWr.io.dataOut_out
 	}.otherwise{
-		regFile.io.WriteData := memWr.io.aluOutput_out
+		when(regFile.io.RegWrite === 1.U){
+			regFile.io.WriteData := memWr.io.aluOutput_out
+		}.otherwise{
+			regFile.io.WriteData := 0.S
+		}
 	}
 
 	io.main_RegOut := regFile.io.WriteData

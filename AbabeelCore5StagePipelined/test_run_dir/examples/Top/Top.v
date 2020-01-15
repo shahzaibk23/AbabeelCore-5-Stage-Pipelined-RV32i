@@ -1383,6 +1383,7 @@ module ALU(
 endmodule
 module PC(
   input         clock,
+  input         reset,
   input  [31:0] io_input,
   output [31:0] io_pc4,
   output [31:0] io_pc
@@ -1424,7 +1425,11 @@ module PC(
   end
 `endif // RANDOMIZE
   always @(posedge clock) begin
-    reg$ <= io_input;
+    if (reset) begin
+      reg$ <= 32'h0;
+    end else begin
+      reg$ <= io_input;
+    end
   end
 endmodule
 module InsMem(
@@ -1630,6 +1635,7 @@ module ID_EXE(
   input  [4:0]  io_rd_in,
   input  [31:0] io_strData_in,
   input  [4:0]  io_aluCtrl_in,
+  input         io_regWrite_in,
   output        io_memWrite_out,
   output        io_memRead_out,
   output        io_memToReg_out,
@@ -1637,32 +1643,36 @@ module ID_EXE(
   output [31:0] io_operandB_out,
   output [4:0]  io_rd_out,
   output [31:0] io_strData_out,
-  output [4:0]  io_aluCtrl_out
+  output [4:0]  io_aluCtrl_out,
+  output        io_regWrite_out
 );
-  reg  reg_memWrite; // @[ID_EXE.scala 31:35]
+  reg  reg_memWrite; // @[ID_EXE.scala 33:35]
   reg [31:0] _RAND_0;
-  reg  reg_memRead; // @[ID_EXE.scala 32:34]
+  reg  reg_memRead; // @[ID_EXE.scala 34:34]
   reg [31:0] _RAND_1;
-  reg  reg_memToReg; // @[ID_EXE.scala 33:35]
+  reg  reg_memToReg; // @[ID_EXE.scala 35:35]
   reg [31:0] _RAND_2;
-  reg [31:0] reg_operandA; // @[ID_EXE.scala 34:35]
+  reg [31:0] reg_operandA; // @[ID_EXE.scala 36:35]
   reg [31:0] _RAND_3;
-  reg [31:0] reg_operandB; // @[ID_EXE.scala 35:35]
+  reg [31:0] reg_operandB; // @[ID_EXE.scala 37:35]
   reg [31:0] _RAND_4;
-  reg [4:0] reg_rd; // @[ID_EXE.scala 36:29]
+  reg [4:0] reg_rd; // @[ID_EXE.scala 38:29]
   reg [31:0] _RAND_5;
-  reg [31:0] reg_strData; // @[ID_EXE.scala 37:34]
+  reg [31:0] reg_strData; // @[ID_EXE.scala 39:34]
   reg [31:0] _RAND_6;
-  reg [4:0] reg_aluCtrl; // @[ID_EXE.scala 38:34]
+  reg [4:0] reg_aluCtrl; // @[ID_EXE.scala 40:34]
   reg [31:0] _RAND_7;
-  assign io_memWrite_out = reg_memWrite; // @[ID_EXE.scala 50:25]
-  assign io_memRead_out = reg_memRead; // @[ID_EXE.scala 51:24]
-  assign io_memToReg_out = reg_memToReg; // @[ID_EXE.scala 52:25]
-  assign io_operandA_out = reg_operandA; // @[ID_EXE.scala 53:25]
-  assign io_operandB_out = reg_operandB; // @[ID_EXE.scala 54:25]
-  assign io_rd_out = reg_rd; // @[ID_EXE.scala 55:19]
-  assign io_strData_out = reg_strData; // @[ID_EXE.scala 56:24]
-  assign io_aluCtrl_out = reg_aluCtrl; // @[ID_EXE.scala 57:24]
+  reg  reg_regWrite; // @[ID_EXE.scala 41:35]
+  reg [31:0] _RAND_8;
+  assign io_memWrite_out = reg_memWrite; // @[ID_EXE.scala 54:25]
+  assign io_memRead_out = reg_memRead; // @[ID_EXE.scala 55:24]
+  assign io_memToReg_out = reg_memToReg; // @[ID_EXE.scala 56:25]
+  assign io_operandA_out = reg_operandA; // @[ID_EXE.scala 57:25]
+  assign io_operandB_out = reg_operandB; // @[ID_EXE.scala 58:25]
+  assign io_rd_out = reg_rd; // @[ID_EXE.scala 59:19]
+  assign io_strData_out = reg_strData; // @[ID_EXE.scala 60:24]
+  assign io_aluCtrl_out = reg_aluCtrl; // @[ID_EXE.scala 61:24]
+  assign io_regWrite_out = reg_regWrite; // @[ID_EXE.scala 62:25]
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
 `define RANDOMIZE
 `endif
@@ -1719,6 +1729,10 @@ module ID_EXE(
   _RAND_7 = {1{`RANDOM}};
   reg_aluCtrl = _RAND_7[4:0];
   `endif // RANDOMIZE_REG_INIT
+  `ifdef RANDOMIZE_REG_INIT
+  _RAND_8 = {1{`RANDOM}};
+  reg_regWrite = _RAND_8[0:0];
+  `endif // RANDOMIZE_REG_INIT
   end
 `endif // RANDOMIZE
   always @(posedge clock) begin
@@ -1762,6 +1776,11 @@ module ID_EXE(
     end else begin
       reg_aluCtrl <= io_aluCtrl_in;
     end
+    if (reset) begin
+      reg_regWrite <= 1'h0;
+    end else begin
+      reg_regWrite <= io_regWrite_in;
+    end
   end
 endmodule
 module EXE_MEM(
@@ -1773,31 +1792,36 @@ module EXE_MEM(
   input  [4:0]  io_rd_in,
   input  [31:0] io_aluOutput_in,
   input  [31:0] io_strData_in,
+  input         io_regWrite_in,
   output        io_memWrite_out,
   output        io_memRead_out,
   output        io_memToReg_out,
   output [4:0]  io_rd_out,
   output [31:0] io_strData_out,
-  output [31:0] io_aluOutput_out
+  output [31:0] io_aluOutput_out,
+  output        io_regWrite_out
 );
-  reg  reg_memWrite; // @[EXE_Mem.scala 27:35]
+  reg  reg_memWrite; // @[EXE_Mem.scala 29:35]
   reg [31:0] _RAND_0;
-  reg  reg_memRead; // @[EXE_Mem.scala 28:34]
+  reg  reg_memRead; // @[EXE_Mem.scala 30:34]
   reg [31:0] _RAND_1;
-  reg  reg_memToReg; // @[EXE_Mem.scala 29:35]
+  reg  reg_memToReg; // @[EXE_Mem.scala 31:35]
   reg [31:0] _RAND_2;
-  reg [4:0] reg_rd; // @[EXE_Mem.scala 30:29]
+  reg [4:0] reg_rd; // @[EXE_Mem.scala 32:29]
   reg [31:0] _RAND_3;
-  reg [31:0] reg_strData; // @[EXE_Mem.scala 31:34]
+  reg [31:0] reg_strData; // @[EXE_Mem.scala 33:34]
   reg [31:0] _RAND_4;
-  reg [31:0] reg_aluOutput; // @[EXE_Mem.scala 32:36]
+  reg [31:0] reg_aluOutput; // @[EXE_Mem.scala 34:36]
   reg [31:0] _RAND_5;
-  assign io_memWrite_out = reg_memWrite; // @[EXE_Mem.scala 42:25]
-  assign io_memRead_out = reg_memRead; // @[EXE_Mem.scala 43:24]
-  assign io_memToReg_out = reg_memToReg; // @[EXE_Mem.scala 44:25]
-  assign io_rd_out = reg_rd; // @[EXE_Mem.scala 45:19]
-  assign io_strData_out = reg_strData; // @[EXE_Mem.scala 46:24]
-  assign io_aluOutput_out = reg_aluOutput; // @[EXE_Mem.scala 47:26]
+  reg  reg_regWrite; // @[EXE_Mem.scala 35:35]
+  reg [31:0] _RAND_6;
+  assign io_memWrite_out = reg_memWrite; // @[EXE_Mem.scala 46:25]
+  assign io_memRead_out = reg_memRead; // @[EXE_Mem.scala 47:24]
+  assign io_memToReg_out = reg_memToReg; // @[EXE_Mem.scala 48:25]
+  assign io_rd_out = reg_rd; // @[EXE_Mem.scala 49:19]
+  assign io_strData_out = reg_strData; // @[EXE_Mem.scala 50:24]
+  assign io_aluOutput_out = reg_aluOutput; // @[EXE_Mem.scala 51:26]
+  assign io_regWrite_out = reg_regWrite; // @[EXE_Mem.scala 52:25]
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
 `define RANDOMIZE
 `endif
@@ -1846,6 +1870,10 @@ module EXE_MEM(
   _RAND_5 = {1{`RANDOM}};
   reg_aluOutput = _RAND_5[31:0];
   `endif // RANDOMIZE_REG_INIT
+  `ifdef RANDOMIZE_REG_INIT
+  _RAND_6 = {1{`RANDOM}};
+  reg_regWrite = _RAND_6[0:0];
+  `endif // RANDOMIZE_REG_INIT
   end
 `endif // RANDOMIZE
   always @(posedge clock) begin
@@ -1879,6 +1907,11 @@ module EXE_MEM(
     end else begin
       reg_aluOutput <= io_aluOutput_in;
     end
+    if (reset) begin
+      reg_regWrite <= 1'h0;
+    end else begin
+      reg_regWrite <= io_regWrite_in;
+    end
   end
 endmodule
 module MEM_WR(
@@ -1888,23 +1921,28 @@ module MEM_WR(
   input  [4:0]  io_rd_in,
   input  [31:0] io_dataOut_in,
   input  [31:0] io_aluOutput_in,
+  input         io_regWrite_in,
   output        io_memToReg_out,
   output [4:0]  io_rd_out,
   output [31:0] io_dataOut_out,
-  output [31:0] io_aluOutput_out
+  output [31:0] io_aluOutput_out,
+  output        io_regWrite_out
 );
-  reg  reg_memToReg; // @[Mem_WR.scala 23:35]
+  reg  reg_memToReg; // @[Mem_WR.scala 25:35]
   reg [31:0] _RAND_0;
-  reg [4:0] reg_rd; // @[Mem_WR.scala 24:29]
+  reg [4:0] reg_rd; // @[Mem_WR.scala 26:29]
   reg [31:0] _RAND_1;
-  reg [31:0] reg_dataOut; // @[Mem_WR.scala 25:34]
+  reg [31:0] reg_dataOut; // @[Mem_WR.scala 27:34]
   reg [31:0] _RAND_2;
-  reg [31:0] reg_aluOutput; // @[Mem_WR.scala 26:36]
+  reg [31:0] reg_aluOutput; // @[Mem_WR.scala 28:36]
   reg [31:0] _RAND_3;
-  assign io_memToReg_out = reg_memToReg; // @[Mem_WR.scala 35:25]
-  assign io_rd_out = reg_rd; // @[Mem_WR.scala 36:19]
-  assign io_dataOut_out = reg_dataOut; // @[Mem_WR.scala 37:24]
-  assign io_aluOutput_out = reg_aluOutput; // @[Mem_WR.scala 38:26]
+  reg  reg_regWrite; // @[Mem_WR.scala 29:35]
+  reg [31:0] _RAND_4;
+  assign io_memToReg_out = reg_memToReg; // @[Mem_WR.scala 39:25]
+  assign io_rd_out = reg_rd; // @[Mem_WR.scala 40:19]
+  assign io_dataOut_out = reg_dataOut; // @[Mem_WR.scala 41:24]
+  assign io_aluOutput_out = reg_aluOutput; // @[Mem_WR.scala 42:26]
+  assign io_regWrite_out = reg_regWrite; // @[Mem_WR.scala 43:25]
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
 `define RANDOMIZE
 `endif
@@ -1945,6 +1983,10 @@ module MEM_WR(
   _RAND_3 = {1{`RANDOM}};
   reg_aluOutput = _RAND_3[31:0];
   `endif // RANDOMIZE_REG_INIT
+  `ifdef RANDOMIZE_REG_INIT
+  _RAND_4 = {1{`RANDOM}};
+  reg_regWrite = _RAND_4[0:0];
+  `endif // RANDOMIZE_REG_INIT
   end
 `endif // RANDOMIZE
   always @(posedge clock) begin
@@ -1967,6 +2009,11 @@ module MEM_WR(
       reg_aluOutput <= 32'sh0;
     end else begin
       reg_aluOutput <= io_aluOutput_in;
+    end
+    if (reset) begin
+      reg_regWrite <= 1'h0;
+    end else begin
+      reg_regWrite <= io_regWrite_in;
     end
   end
 endmodule
@@ -2005,6 +2052,7 @@ module Top(
   wire [4:0] alu_io_AluControl; // @[Top.scala 22:25]
   wire [31:0] alu_io_output; // @[Top.scala 22:25]
   wire  Pc_clock; // @[Top.scala 23:24]
+  wire  Pc_reset; // @[Top.scala 23:24]
   wire [31:0] Pc_io_input; // @[Top.scala 23:24]
   wire [31:0] Pc_io_pc4; // @[Top.scala 23:24]
   wire [31:0] Pc_io_pc; // @[Top.scala 23:24]
@@ -2035,6 +2083,7 @@ module Top(
   wire [4:0] idExe_io_rd_in; // @[Top.scala 28:27]
   wire [31:0] idExe_io_strData_in; // @[Top.scala 28:27]
   wire [4:0] idExe_io_aluCtrl_in; // @[Top.scala 28:27]
+  wire  idExe_io_regWrite_in; // @[Top.scala 28:27]
   wire  idExe_io_memWrite_out; // @[Top.scala 28:27]
   wire  idExe_io_memRead_out; // @[Top.scala 28:27]
   wire  idExe_io_memToReg_out; // @[Top.scala 28:27]
@@ -2043,6 +2092,7 @@ module Top(
   wire [4:0] idExe_io_rd_out; // @[Top.scala 28:27]
   wire [31:0] idExe_io_strData_out; // @[Top.scala 28:27]
   wire [4:0] idExe_io_aluCtrl_out; // @[Top.scala 28:27]
+  wire  idExe_io_regWrite_out; // @[Top.scala 28:27]
   wire  exeMem_clock; // @[Top.scala 29:28]
   wire  exeMem_reset; // @[Top.scala 29:28]
   wire  exeMem_io_memWrite_in; // @[Top.scala 29:28]
@@ -2051,22 +2101,26 @@ module Top(
   wire [4:0] exeMem_io_rd_in; // @[Top.scala 29:28]
   wire [31:0] exeMem_io_aluOutput_in; // @[Top.scala 29:28]
   wire [31:0] exeMem_io_strData_in; // @[Top.scala 29:28]
+  wire  exeMem_io_regWrite_in; // @[Top.scala 29:28]
   wire  exeMem_io_memWrite_out; // @[Top.scala 29:28]
   wire  exeMem_io_memRead_out; // @[Top.scala 29:28]
   wire  exeMem_io_memToReg_out; // @[Top.scala 29:28]
   wire [4:0] exeMem_io_rd_out; // @[Top.scala 29:28]
   wire [31:0] exeMem_io_strData_out; // @[Top.scala 29:28]
   wire [31:0] exeMem_io_aluOutput_out; // @[Top.scala 29:28]
+  wire  exeMem_io_regWrite_out; // @[Top.scala 29:28]
   wire  memWr_clock; // @[Top.scala 30:27]
   wire  memWr_reset; // @[Top.scala 30:27]
   wire  memWr_io_memToReg_in; // @[Top.scala 30:27]
   wire [4:0] memWr_io_rd_in; // @[Top.scala 30:27]
   wire [31:0] memWr_io_dataOut_in; // @[Top.scala 30:27]
   wire [31:0] memWr_io_aluOutput_in; // @[Top.scala 30:27]
+  wire  memWr_io_regWrite_in; // @[Top.scala 30:27]
   wire  memWr_io_memToReg_out; // @[Top.scala 30:27]
   wire [4:0] memWr_io_rd_out; // @[Top.scala 30:27]
   wire [31:0] memWr_io_dataOut_out; // @[Top.scala 30:27]
   wire [31:0] memWr_io_aluOutput_out; // @[Top.scala 30:27]
+  wire  memWr_io_regWrite_out; // @[Top.scala 30:27]
   wire  _T_14; // @[Top.scala 67:38]
   wire [31:0] _T_15; // @[Top.scala 68:58]
   wire  _T_17; // @[Top.scala 69:44]
@@ -2081,8 +2135,10 @@ module Top(
   wire  _T_33; // @[Top.scala 80:53]
   wire [31:0] _GEN_2; // @[Top.scala 80:87]
   wire [31:0] _GEN_3; // @[Top.scala 78:87]
-  wire [7:0] _T_35; // @[Top.scala 114:55]
-  wire  _T_37; // @[Top.scala 131:36]
+  wire [7:0] _T_35; // @[Top.scala 115:55]
+  wire  _T_37; // @[Top.scala 135:36]
+  wire  _T_39; // @[Top.scala 138:42]
+  wire [31:0] _GEN_5; // @[Top.scala 138:50]
   Control control ( // @[Top.scala 18:29]
     .io_OpCode(control_io_OpCode),
     .io_MemWrite(control_io_MemWrite),
@@ -2124,6 +2180,7 @@ module Top(
   );
   PC Pc ( // @[Top.scala 23:24]
     .clock(Pc_clock),
+    .reset(Pc_reset),
     .io_input(Pc_io_input),
     .io_pc4(Pc_io_pc4),
     .io_pc(Pc_io_pc)
@@ -2162,6 +2219,7 @@ module Top(
     .io_rd_in(idExe_io_rd_in),
     .io_strData_in(idExe_io_strData_in),
     .io_aluCtrl_in(idExe_io_aluCtrl_in),
+    .io_regWrite_in(idExe_io_regWrite_in),
     .io_memWrite_out(idExe_io_memWrite_out),
     .io_memRead_out(idExe_io_memRead_out),
     .io_memToReg_out(idExe_io_memToReg_out),
@@ -2169,7 +2227,8 @@ module Top(
     .io_operandB_out(idExe_io_operandB_out),
     .io_rd_out(idExe_io_rd_out),
     .io_strData_out(idExe_io_strData_out),
-    .io_aluCtrl_out(idExe_io_aluCtrl_out)
+    .io_aluCtrl_out(idExe_io_aluCtrl_out),
+    .io_regWrite_out(idExe_io_regWrite_out)
   );
   EXE_MEM exeMem ( // @[Top.scala 29:28]
     .clock(exeMem_clock),
@@ -2180,12 +2239,14 @@ module Top(
     .io_rd_in(exeMem_io_rd_in),
     .io_aluOutput_in(exeMem_io_aluOutput_in),
     .io_strData_in(exeMem_io_strData_in),
+    .io_regWrite_in(exeMem_io_regWrite_in),
     .io_memWrite_out(exeMem_io_memWrite_out),
     .io_memRead_out(exeMem_io_memRead_out),
     .io_memToReg_out(exeMem_io_memToReg_out),
     .io_rd_out(exeMem_io_rd_out),
     .io_strData_out(exeMem_io_strData_out),
-    .io_aluOutput_out(exeMem_io_aluOutput_out)
+    .io_aluOutput_out(exeMem_io_aluOutput_out),
+    .io_regWrite_out(exeMem_io_regWrite_out)
   );
   MEM_WR memWr ( // @[Top.scala 30:27]
     .clock(memWr_clock),
@@ -2194,10 +2255,12 @@ module Top(
     .io_rd_in(memWr_io_rd_in),
     .io_dataOut_in(memWr_io_dataOut_in),
     .io_aluOutput_in(memWr_io_aluOutput_in),
+    .io_regWrite_in(memWr_io_regWrite_in),
     .io_memToReg_out(memWr_io_memToReg_out),
     .io_rd_out(memWr_io_rd_out),
     .io_dataOut_out(memWr_io_dataOut_out),
-    .io_aluOutput_out(memWr_io_aluOutput_out)
+    .io_aluOutput_out(memWr_io_aluOutput_out),
+    .io_regWrite_out(memWr_io_regWrite_out)
   );
   assign _T_14 = control_io_Operand_aSel == 2'h1; // @[Top.scala 67:38]
   assign _T_15 = $signed(ifId_io_pc_out); // @[Top.scala 68:58]
@@ -2213,16 +2276,18 @@ module Top(
   assign _T_33 = _T_30 & _T_22; // @[Top.scala 80:53]
   assign _GEN_2 = _T_33 ? $signed(immGen_io_U_Imm) : $signed(regFile_io_rd2); // @[Top.scala 80:87]
   assign _GEN_3 = _T_28 ? $signed(immGen_io_S_Imm) : $signed(_GEN_2); // @[Top.scala 78:87]
-  assign _T_35 = exeMem_io_aluOutput_out[9:2]; // @[Top.scala 114:55]
-  assign _T_37 = memWr_io_memToReg_out; // @[Top.scala 131:36]
-  assign io_main_RegOut = regFile_io_WriteData; // @[Top.scala 137:24]
+  assign _T_35 = exeMem_io_aluOutput_out[9:2]; // @[Top.scala 115:55]
+  assign _T_37 = memWr_io_memToReg_out; // @[Top.scala 135:36]
+  assign _T_39 = regFile_io_RegWrite; // @[Top.scala 138:42]
+  assign _GEN_5 = _T_39 ? $signed(memWr_io_aluOutput_out) : $signed(32'sh0); // @[Top.scala 138:50]
+  assign io_main_RegOut = regFile_io_WriteData; // @[Top.scala 145:24]
   assign control_io_OpCode = ifId_io_ins_out[6:0]; // @[Top.scala 49:27]
   assign regFile_clock = clock;
-  assign regFile_io_RegWrite = control_io_RegWrite; // @[Top.scala 52:29]
+  assign regFile_io_RegWrite = memWr_io_regWrite_out; // @[Top.scala 133:29]
   assign regFile_io_rs1 = ifId_io_ins_out[19:15]; // @[Top.scala 53:24]
   assign regFile_io_rs2 = ifId_io_ins_out[24:20]; // @[Top.scala 54:24]
-  assign regFile_io_rd = memWr_io_rd_out; // @[Top.scala 129:23]
-  assign regFile_io_WriteData = _T_37 ? $signed(memWr_io_dataOut_out) : $signed(memWr_io_aluOutput_out); // @[Top.scala 132:38 Top.scala 134:38]
+  assign regFile_io_rd = memWr_io_rd_out; // @[Top.scala 132:23]
+  assign regFile_io_WriteData = _T_37 ? $signed(memWr_io_dataOut_out) : $signed(_GEN_5); // @[Top.scala 136:38 Top.scala 139:46 Top.scala 141:46]
   assign immGen_io_ins = ifId_io_ins_out; // @[Top.scala 58:23]
   assign aluControl_io_AluOp = control_io_AluOp; // @[Top.scala 62:29]
   assign aluControl_io_Func3 = ifId_io_ins_out[14:12]; // @[Top.scala 63:29]
@@ -2231,14 +2296,15 @@ module Top(
   assign alu_io_b = idExe_io_operandB_out; // @[Top.scala 100:18]
   assign alu_io_AluControl = idExe_io_aluCtrl_out; // @[Top.scala 98:27]
   assign Pc_clock = clock;
+  assign Pc_reset = reset;
   assign Pc_io_input = Pc_io_pc4; // @[Top.scala 35:21]
   assign insMem_clock = clock;
   assign insMem_io_wrAdder = Pc_io_pc[11:2]; // @[Top.scala 38:27]
   assign dataMem_clock = clock;
-  assign dataMem_io_Address = {{2'd0}, _T_35}; // @[Top.scala 114:28]
-  assign dataMem_io_DataIn = exeMem_io_strData_out; // @[Top.scala 117:27]
-  assign dataMem_io_str = exeMem_io_memWrite_out; // @[Top.scala 115:24]
-  assign dataMem_io_ld = exeMem_io_memRead_out; // @[Top.scala 116:23]
+  assign dataMem_io_Address = {{2'd0}, _T_35}; // @[Top.scala 115:28]
+  assign dataMem_io_DataIn = exeMem_io_strData_out; // @[Top.scala 118:27]
+  assign dataMem_io_str = exeMem_io_memWrite_out; // @[Top.scala 116:24]
+  assign dataMem_io_ld = exeMem_io_memRead_out; // @[Top.scala 117:23]
   assign ifId_clock = clock;
   assign ifId_reset = reset;
   assign ifId_io_pc_in = Pc_io_pc; // @[Top.scala 42:23]
@@ -2254,6 +2320,7 @@ module Top(
   assign idExe_io_rd_in = ifId_io_ins_out[11:7]; // @[Top.scala 91:24]
   assign idExe_io_strData_in = regFile_io_rd2; // @[Top.scala 92:29]
   assign idExe_io_aluCtrl_in = aluControl_io_AluC; // @[Top.scala 93:29]
+  assign idExe_io_regWrite_in = control_io_RegWrite; // @[Top.scala 94:30]
   assign exeMem_clock = clock;
   assign exeMem_reset = reset;
   assign exeMem_io_memWrite_in = idExe_io_memWrite_out; // @[Top.scala 104:31]
@@ -2262,10 +2329,12 @@ module Top(
   assign exeMem_io_rd_in = idExe_io_rd_out; // @[Top.scala 107:25]
   assign exeMem_io_aluOutput_in = alu_io_output; // @[Top.scala 109:32]
   assign exeMem_io_strData_in = idExe_io_strData_out; // @[Top.scala 108:30]
+  assign exeMem_io_regWrite_in = idExe_io_regWrite_out; // @[Top.scala 110:31]
   assign memWr_clock = clock;
   assign memWr_reset = reset;
-  assign memWr_io_memToReg_in = exeMem_io_memToReg_out; // @[Top.scala 121:30]
-  assign memWr_io_rd_in = exeMem_io_rd_out; // @[Top.scala 122:24]
-  assign memWr_io_dataOut_in = dataMem_io_DataOut; // @[Top.scala 124:29]
-  assign memWr_io_aluOutput_in = exeMem_io_aluOutput_out; // @[Top.scala 123:31]
+  assign memWr_io_memToReg_in = exeMem_io_memToReg_out; // @[Top.scala 122:30]
+  assign memWr_io_rd_in = exeMem_io_rd_out; // @[Top.scala 123:24]
+  assign memWr_io_dataOut_in = dataMem_io_DataOut; // @[Top.scala 125:29]
+  assign memWr_io_aluOutput_in = exeMem_io_aluOutput_out; // @[Top.scala 124:31]
+  assign memWr_io_regWrite_in = exeMem_io_regWrite_out; // @[Top.scala 126:30]
 endmodule

@@ -37,7 +37,6 @@ VL_MODULE(VTop) {
     VL_SIG8(Top__DOT__control__DOT__ID_io_Jalr,0,0);
     VL_SIG8(Top__DOT__control__DOT__ID_io_Jal,0,0);
     VL_SIG8(Top__DOT__control__DOT__ID_io_Lui,0,0);
-    VL_SIG8(Top__DOT__control__DOT__CD_io_RegWrite,0,0);
     VL_SIG8(Top__DOT__control__DOT__CD_io_AluOp,2,0);
     VL_SIG8(Top__DOT__control__DOT__CD_io_Operand_aSel,1,0);
     VL_SIG8(Top__DOT__control__DOT__CD_io_Operand_bSel,0,0);
@@ -50,13 +49,17 @@ VL_MODULE(VTop) {
     VL_SIG8(Top__DOT__idExe__DOT__reg_memToReg,0,0);
     VL_SIG8(Top__DOT__idExe__DOT__reg_rd,4,0);
     VL_SIG8(Top__DOT__idExe__DOT__reg_aluCtrl,4,0);
+    VL_SIG8(Top__DOT__idExe__DOT__reg_regWrite,0,0);
     VL_SIG8(Top__DOT__exeMem__DOT__reg_memWrite,0,0);
     VL_SIG8(Top__DOT__exeMem__DOT__reg_memToReg,0,0);
     VL_SIG8(Top__DOT__exeMem__DOT__reg_rd,4,0);
+    VL_SIG8(Top__DOT__exeMem__DOT__reg_regWrite,0,0);
     VL_SIG8(Top__DOT__memWr__DOT__reg_memToReg,0,0);
     VL_SIG8(Top__DOT__memWr__DOT__reg_rd,4,0);
-    //char	__VpadToAlign37[1];
+    VL_SIG8(Top__DOT__memWr__DOT__reg_regWrite,0,0);
+    //char	__VpadToAlign39[1];
     VL_SIG16(Top__DOT__dataMem__DOT__dMem___05FT_20_addr_pipe_0,9,0);
+    //char	__VpadToAlign42[2];
     VL_SIG(Top__DOT__regFile_io_WriteData,31,0);
     VL_SIG(Top__DOT__regFile_io_rd2,31,0);
     VL_SIG(Top__DOT__Pc_io_input,31,0);
@@ -106,7 +109,6 @@ VL_MODULE(VTop) {
     VL_SIG(Top__DOT__exeMem__DOT__reg_aluOutput,31,0);
     VL_SIG(Top__DOT__memWr__DOT__reg_dataOut,31,0);
     VL_SIG(Top__DOT__memWr__DOT__reg_aluOutput,31,0);
-    //char	__VpadToAlign236[4];
     VL_SIG(Top__DOT__insMem__DOT__mem[1024],31,0);
     VL_SIG(Top__DOT__dataMem__DOT__dMem[1024],31,0);
     
