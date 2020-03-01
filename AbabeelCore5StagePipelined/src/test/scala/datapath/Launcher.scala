@@ -85,6 +85,41 @@ object Launcher {
         Driver.execute(() => new MEM_WR(), manager) {
           (c) => new MEM_WR_Tests(c)
         }
+      },
+	"blankReg" -> { (manager: TesterOptionsManager) =>
+        Driver.execute(() => new blankReg(), manager) {
+          (c) => new blankRegTests(c)
+        }
+      },
+	"HDU" -> { (manager: TesterOptionsManager) =>
+        Driver.execute(() => new HDU(), manager) {
+          (c) => new HDU_Tests(c)
+        }
+      },
+	"StallUnit" -> { (manager: TesterOptionsManager) =>
+        Driver.execute(() => new StallUnit(), manager) {
+          (c) => new SU_Tests(c)
+        }
+      },
+	"BranchUnit" -> { (manager: TesterOptionsManager) =>
+        Driver.execute(() => new BranchUnit(), manager) {
+          (c) => new BU_Tests(c)
+        }
+      },
+	"BranchFwdUnit" -> { (manager: TesterOptionsManager) =>
+        Driver.execute(() => new BranchFwdUnit(), manager) {
+          (c) => new BFU_Tests(c)
+        }
+      },
+	"JalrFwdUnit" -> { (manager: TesterOptionsManager) =>
+        Driver.execute(() => new JalrFwdUnit(), manager) {
+          (c) => new JFU_Tests(c)
+        }
+      },
+	"StoreFwdUnit" -> { (manager: TesterOptionsManager) =>
+        Driver.execute(() => new StoreFwdUnit(), manager) {
+          (c) => new SFU_Tests(c)
+        }
       }
 )
 

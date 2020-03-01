@@ -16,6 +16,11 @@ class RegFile extends Module{
 	
 	val registers = Reg(Vec(32,SInt(32.W)))	
 	registers(0) := (0.S)
+	registers(2) := (512.S)
+	//registers(3) := (268435456.S)
+	//registers(8) := (512.S)
+	
+	//egisters(2) := ("hffffffcc".S)
 	io.rd1 := registers(io.rs1)
 	io.rd2 := registers(io.rs2)
 	when(io.RegWrite === 1.U){
